@@ -20,16 +20,18 @@ pipeline {
                 }
             }
         }
-        stage("Build"){
+        stage("Testing"){
             steps {
                 script {
                     sh "./mvn clean test -e'"
                 }
             }
         }
-        steps {
-            script {
-                sh "./mvnw clean package -e"
+        stage("Package artifact"){
+            steps {
+                script {
+                    sh "./mvnw clean package -e"
+                }
             }
         }
     }
