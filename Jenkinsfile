@@ -8,8 +8,10 @@ pipeline {
     stages {
         stage('Analyse code') {
             steps {
-                withSonarQubeEnv('sonarqube') {
+                script {
                     env.STAGE='Analyse code'
+                }
+                withSonarQubeEnv('sonarqube') {
                     sh './mvnw clean verify sonar:sonar -Dsonar.projectKey=ms-iclab'
                 }
             }
