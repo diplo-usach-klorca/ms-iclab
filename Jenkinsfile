@@ -7,6 +7,7 @@ pipeline {
     agent any
     stages {
         stage('Analyse code') {
+            env.stage = "analyse"
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh './mvnw clean verify sonar:sonar -Dsonar.projectKey=ms-iclab'
@@ -14,6 +15,7 @@ pipeline {
             }
         }
         stage("Build"){
+            env.stage = "build"
             steps {
                 script {
                     sh "./mvn clean compile -e'"
@@ -21,6 +23,7 @@ pipeline {
             }
         }
         stage("Testing"){
+            env.stage = "test"
             steps {
                 script {
                     sh "./mvn clean test -e'"
@@ -28,6 +31,7 @@ pipeline {
             }
         }
         stage("Package artifact"){
+            env.stage = "artifact"
             steps {
                 script {
                     sh "./mvnw clean package -e"
