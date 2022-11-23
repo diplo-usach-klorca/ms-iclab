@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     env.STAGE='Build'
-                    sh "./mvn clean compile -e'"
+                    sh "./mvn clean compile -e"
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     env.STAGE='Testing'
-                    sh "./mvn clean test -e'"
+                    sh "./mvn clean test -e"
                 }
             }
         }
