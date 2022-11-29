@@ -9,17 +9,6 @@ pipeline {
         NEXUS_PASSWORD     = credentials('admin-user')
     }
     stages {
-        stage("Paso 0: Download Code and checkout"){
-            steps {
-                script{
-                    env.STAGE='Paso 0'
-                    checkout(
-                            [$class: 'GitSCM',
-                            branches: [[name: "feature/feature-estado-pais" ]],
-                            userRemoteConfigs: [[url: 'https://github.com/diplo-usach-klorca/ms-iclab.git']]])
-                }
-            }
-        }
         stage("Paso 1: Build && Test"){
             steps {
                 script{
@@ -127,10 +116,10 @@ pipeline {
     }
     post {
         success {
-			slackSend color: 'good', message: "[Grupo6][Pipeline IC/CD][Rama: ${env.BRANCH_NAME}][Stage: ${env.STAGE}][Resultado:Éxito/Success]", teamDomain: 'devopsusach20-lzc3526', tokenCredentialId: 'token-slack', channel: "${CHANNEL}"
+			slackSend color: 'good', message: "[Grupo6][Pipeline IC/CD][Rama: ${GIT_BRANCH}][Stage: ${env.STAGE}][Resultado:Éxito/Success]", teamDomain: 'devopsusach20-lzc3526', tokenCredentialId: 'token-slack', channel: "${CHANNEL}"
 		}
 		failure {
-            slackSend color: 'danger', message: "[Grupo6][Pipeline IC/CD][Rama: ${env.BRANCH_NAME}][Stage: ${env.STAGE}][Resultado:Error/Fail]", teamDomain: 'devopsusach20-lzc3526', tokenCredentialId: 'token-slack', channel: "${CHANNEL}"
+            slackSend color: 'danger', message: "[Grupo6][Pipeline IC/CD][Rama: ${GIT_BRANCH}][Stage: ${env.STAGE}][Resultado:Error/Fail]", teamDomain: 'devopsusach20-lzc3526', tokenCredentialId: 'token-slack', channel: "${CHANNEL}"
         }
     }
 } 
