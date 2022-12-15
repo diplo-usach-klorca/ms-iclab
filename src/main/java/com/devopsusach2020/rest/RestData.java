@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.devopsusach2020.model.Pais;
+import com.devopsusach2020.model.RespuestaAPICovid;
 import com.devopsusach2020.model.Mundial;
 import com.google.gson.Gson;
 
@@ -65,6 +66,17 @@ public class RestData {
 		return response;		
 	}
 	
+	@GetMapping(path = "/validaApiCovid", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody RespuestaAPICovid validaApiCovid(){
+		RestTemplate restTemplate = new RestTemplate();
+	    ResponseEntity<String> call= restTemplate.getForEntity("https://api.covid19api.com/" ,String.class);
+	    
+		RespuestaAPICovid response = new RespuestaAPICovid();
+
+		response.setStatusCode(call.getStatusCode().value());
+
+		return response;		
+	}
 
 	@GetMapping(path = "/estadoMundial", produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Mundial getTotalMundial(){
