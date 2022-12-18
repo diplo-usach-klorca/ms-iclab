@@ -22,9 +22,9 @@ public class DevOpsUsach2020ApplicationTest {
 	@Test
 	public void testEstadoPais() throws Exception {
 
-		String pais = "Ecuador";
-		Pais response = controller.getTotalPais(pais);
-		assertEquals(pais.toLowerCase(), response.getCountry().toLowerCase());
+		String expectedMessage = "ok";
+		Pais response = controller.getTotalPais("Ecuador");
+		assertEquals(expectedMessage, response.getMensaje());
 
 	}
 
