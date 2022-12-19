@@ -23,7 +23,7 @@
 							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});",
 							"",
-							"pm.test(\"El API covid respondió con estado 200\", function() {",
+							"pm.test(\"El mensaje es Ok\", function() {",
 							"    pm.expect(body.mensaje).to.be.equal(\"ok\");",
 							"});"
 						],
@@ -72,7 +72,7 @@
 							"    pm.expect(pm.response.responseTime).to.be.below(2000);",
 							"});",
 							"",
-							"pm.test(\"El API covid respondió con estado 200\", function() {",
+							"pm.test(\"La cantidad de muertos es menor a 7,6m\", function() {",
 							"    pm.expect(body.totalDeaths).to.be.lte(7659023);",
 							"});"
 						],
