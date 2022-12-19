@@ -98,7 +98,7 @@ pipeline {
             steps {
                 script{
                     env.STAGE='Paso 8'
-                    sh "sleep 20 && curl -X GET 'http://localhost:8081/rest/mscovid/estadoPais?pais=chile'"
+                    sh "sleep 20 && newman run test-api-covid.postman_collection.json"
                 }
             }
         }
