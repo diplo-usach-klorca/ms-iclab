@@ -26,7 +26,7 @@ class DevOpsUsach2020ApplicationTests {
 	@Test
 	public void testEstadoMundial() throws Exception {	
 
-		int expectedDeadths = 6658989;
+		int expectedDeadths = 750596231;
 		Mundial response = controller.getTotalMundial();
 		assertTrue( expectedDeadths >= response.getTotalDeaths());
 
