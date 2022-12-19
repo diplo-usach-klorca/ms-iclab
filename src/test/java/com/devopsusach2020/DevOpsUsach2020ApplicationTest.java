@@ -1,17 +1,22 @@
 package com.devopsusach2020;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import com.devopsusach2020.model.RespuestaAPICovid;
+
+import com.devopsusach2020.model.Mundial;
 import com.devopsusach2020.model.Pais;
+import com.devopsusach2020.model.RespuestaAPICovid;
 import com.devopsusach2020.rest.RestData;
 
 @SpringBootTest
-public class DevOpsUsach2020ApplicationTest {
+class DevOpsUsach2020ApplicationTests {
+
 	RestData controller = new RestData();
 
-	@Test
+	@Test 
 	public void testValidaApiCovid() throws Exception {
 		int expectedStatus = 200;
 		RespuestaAPICovid response = controller.validaApiCovid();
@@ -20,12 +25,19 @@ public class DevOpsUsach2020ApplicationTest {
 	}
 
 	@Test
+	public void testEstadoMundial() throws Exception {	
+
+		int expectedDeadths = 750596231;
+		Mundial response = controller.getTotalMundial();
+		assertTrue( expectedDeadths >= response.getTotalDeaths());
+  }
+  
 	public void testEstadoPais() throws Exception {
 
 		String expectedMessage = "ok";
 		Pais response = controller.getTotalPais("Ecuador");
 		assertEquals(expectedMessage, response.getMensaje());
-
+    
 	}
 
 }

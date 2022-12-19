@@ -91,6 +91,7 @@ public class RestData {
         response.setTotalConfirmed(estado.getTotalConfirmed());
         response.setTotalDeaths(estado.getTotalDeaths());
         response.setTotalRecovered(estado.getTotalRecovered());
+		LOGGER.log(Level.INFO, String.format("Total de muertes: %s", Integer.toString(estado.getTotalDeaths())));
 
 		return response;		
 	}
