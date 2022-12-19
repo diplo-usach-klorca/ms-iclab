@@ -20,6 +20,7 @@ class DevOpsUsach2020ApplicationTests {
 	public void testValidaApiCovid() throws Exception {
 		int expectedStatus = 200;
 		RespuestaAPICovid response = controller.validaApiCovid();
+
 		assertEquals(expectedStatus, response.getStatusCode());
 	}
 
@@ -29,7 +30,14 @@ class DevOpsUsach2020ApplicationTests {
 		int expectedDeadths = 750596231;
 		Mundial response = controller.getTotalMundial();
 		assertTrue( expectedDeadths >= response.getTotalDeaths());
+  }
+  
+	public void testEstadoPais() throws Exception {
 
+		String expectedMessage = "ok";
+		Pais response = controller.getTotalPais("Ecuador");
+		assertEquals(expectedMessage, response.getMensaje());
+    
 	}
 
 }
